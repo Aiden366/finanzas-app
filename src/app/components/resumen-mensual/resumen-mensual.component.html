@@ -1,0 +1,17 @@
+<div class="resumen-filtros">
+  <label for="mes">Mes:</label>
+  <select id="mes" [(ngModel)]="mesSeleccionado" (change)="cargarResumen()">
+    <option *ngFor="let m of meses" [value]="m.valor">{{ m.nombre }}</option>
+  </select>
+
+  <label for="anio">Año:</label>
+  <select id="anio" [(ngModel)]="anioSeleccionado" (change)="cargarResumen()">
+    <option *ngFor="let a of anios" [value]="a">{{ a }}</option>
+  </select>
+</div>
+
+<div class="resumen-contenido">
+  <p><strong>Ingresos:</strong> {{ ingresos | currency:'MXN' }}</p>
+  <p><strong>Gastos:</strong> {{ gastos | currency:'MXN' }}</p>
+  <p><strong>Balance:</strong> {{ balance | currency:'MXN' }}</p>
+</div>

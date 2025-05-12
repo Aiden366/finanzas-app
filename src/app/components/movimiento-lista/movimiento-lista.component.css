@@ -1,0 +1,82 @@
+/* Contenedor principal */
+.lista-container {
+  padding: 20px;
+  background-color: #fdf7f0; /* fondo cálido claro */
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(120, 72, 0, 0.1);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Filtros */
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.filtros mat-form-field {
+  width: 200px;
+}
+
+/* Tabla de movimientos */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fffaf4; /* blanco cálido */
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 5px rgba(120, 72, 0, 0.1);
+}
+
+thead {
+  background-color: #a9825a; /* marrón claro */
+  color: #fff;
+}
+
+thead th {
+  text-align: left;
+  padding: 12px;
+  font-size: 15px;
+}
+
+tbody td {
+  padding: 12px;
+  border-bottom: 1px solid #e0d3c3;
+  color: #4b3d2a;
+}
+
+tbody tr:hover {
+  background-color: #f4e6d9;
+}
+
+/* Categoría destacada */
+td.categoria {
+  font-weight: bold;
+  color: #7a5c3d;
+}
+
+/* Mensaje si no hay movimientos */
+.sin-movimientos {
+  text-align: center;
+  margin-top: 40px;
+  color: #a38c7c;
+  font-style: italic;
+  font-size: 16px;
+}
+.resumen-mensual {
+  background-color: #f3e5f5; /* Color suave, como un marrón claro */
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.resumen-mensual h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.resumen-mensual p {
+  font-size: 16px;
+  margin: 5px 0;
+}

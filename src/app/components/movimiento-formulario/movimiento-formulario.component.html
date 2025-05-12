@@ -1,0 +1,40 @@
+<div class="container">
+  <h2>Registrar Movimiento</h2>
+  <form [formGroup]="form" (ngSubmit)="guardar()">
+    <mat-form-field>
+      <mat-label>Tipo</mat-label>
+      <mat-select formControlName="tipo">
+        <mat-option value="ingreso">Ingreso</mat-option>
+        <mat-option value="gasto">Gasto</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Monto</mat-label>
+      <input matInput type="number" formControlName="monto" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Descripción</mat-label>
+      <input matInput type="text" formControlName="descripcion" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Fecha</mat-label>
+      <input matInput type="date" formControlName="fecha" />
+    </mat-form-field>
+
+
+
+    <mat-form-field>
+      <mat-label>Categoría</mat-label>
+      <mat-select formControlName="categoria_id">
+        <mat-option *ngFor="let cat of categorias" [value]="cat.id">
+          {{ cat.nombre }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Guardar</button>
+  </form>
+</div>

@@ -1,0 +1,69 @@
+<div class="lista-container">
+  <div class="filtros">
+    <div class="filtros">
+
+      <mat-form-field appearance="outline">
+        <mat-label>Tipo</mat-label>
+        <mat-select [(ngModel)]="filtroTipo" (selectionChange)="onFiltroCambio()">
+          <mat-option value="">Todos</mat-option>
+          <mat-option value="ingreso">Ingreso</mat-option>
+          <mat-option value="gasto">Gasto</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Categoría</mat-label>
+        <mat-select [(ngModel)]="filtroCategoria" (selectionChange)="onFiltroCambio()">
+          <mat-option [value]="null">Todas</mat-option>
+          <mat-option *ngFor="let cat of categorias" [value]="cat.id">{{ cat.nombre }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Buscar</mat-label>
+        <input matInput placeholder="Descripción o categoría" [(ngModel)]="filtroBusqueda" (ngModelChange)="onFiltroCambio()">
+      </mat-form-field>
+    </div>
+
+
+  <table *ngIf="movimientosFiltrados().length > 0">
+    <thead>
+      <tr>
+        <th>Tipo</th>
+        <th>Monto</th>
+        <th>Fecha</th>
+        <th>Categoría</th>
+        <th>Descripción</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let mov of movimientosFiltrados()">
+      <td>{{ mov.fecha }}</td>
+      <td>{{ mov.tipo }}</td>
+      <td>{{ obtenerNombreCategoria(mov.categoria_id) }}</td>
+      <td>{{ mov.descripcion || '-' }}</td>
+      <td>{{ mov.monto | currency:'USD' }}</td>
+      <td>
+       <!-- Este es el botón para editar -->
+        <button (click)="editarMovimiento(mov.id)">Editar</button>
+
+        <button (click)="eliminarMovimiento(mov.id)">🗑️</button>
+  </td>
+</tr>
+
+    </tbody>
+  </table>
+
+  <div class="resumen-mensual">
+    <h3>Resumen Mensual</h3>
+    <p><strong>Ingresos:</strong> {{ ingresos |  currency:'USD':'symbol' }}</p>
+    <p><strong>Gastos:</strong> {{ gastos |  currency:'USD':'symbol' }}</p>
+    <p><strong>Balance:</strong> {{ ingresos - gastos |  currency:'USD':'symbol' }}</p>
+  </div>
+
+
+
+  <div *ngIf="movimientosFiltrados().length === 0" class="sin-movimientos">
+    No se encontraron movimientos para los filtros aplicados.
+  </div>
+</div>
