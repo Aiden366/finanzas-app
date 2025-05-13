@@ -4,7 +4,11 @@ import { MovimientoListaComponent } from './components/movimiento-lista/movimien
 import { MovimientoFormularioComponent } from './components/movimiento-formulario/movimiento-formulario.component';
 
 export const routes: Routes = [
-  { path: '', component: MovimientoListaComponent },
+  { path: 'movimientos', component: MovimientoListaComponent },
   { path: 'nuevo', component: MovimientoFormularioComponent },
-  { path: '**', redirectTo: '' }
+  { path: 'movimiento-formulario', component: MovimientoFormularioComponent },
+  { path: '', redirectTo: 'movimientos', pathMatch: 'full' },
+  { path: '**', redirectTo: 'movimientos' } // Wildcard al final SIEMPRE
 ];
+
+

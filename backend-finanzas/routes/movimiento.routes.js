@@ -13,4 +13,9 @@ module.exports = (app) => {
   router.get("/:id", movimientos.findById); // Ruta para obtener un movimiento específico por ID
 
   app.use("/api/movimientos", router);
+  app.get('/api/movimientos/:id', (req, res) => {
+    const id = req.params.id;
+    // lógica para buscar el movimiento por ID
+  });
+
 };

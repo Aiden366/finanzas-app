@@ -192,23 +192,26 @@ export class MovimientoListaComponent implements OnInit {
   }
 
   editarMovimiento(id: number) {
-    console.log('ID recibido para editar:', id);  // Verifica si el ID es correcto
-
-    if (!id) {
-      console.log('El ID no es válido');
-      return; // Si el ID no es válido, salimos de la función
-    }
+    console.log('ID recibido para editar:', id);
 
     this.movimientoService.obtenerMovimientoPorId(id).subscribe({
       next: (mov: Movimiento) => {
         console.log('Movimiento recibido para edición:', mov);
-        this.router.navigate(['/movimiento-formulario'], { state: { movimiento: mov } });
-      },
+        this.router.navigate(['/movimiento-formulario'], { state: { movimiento: mov } })
+        .then(success => {
+          console.log('Navegación exitosa:', success);
+        })
+        .catch(error => {
+          console.error('Error al navegar:', error);
+        });
+            },
       error: (err) => {
         console.error('Error al cargar movimiento para edición:', err);
       }
     });
   }
+
+
 
 
 

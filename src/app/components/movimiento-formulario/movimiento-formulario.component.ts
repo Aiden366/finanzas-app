@@ -8,6 +8,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-movimiento-formulario',
@@ -34,18 +35,22 @@ export class MovimientoFormularioComponent {
     { id: 2, nombre: 'Transporte' },
     { id: 3, nombre: 'Entretenimiento' }
   ];
+  constructor(private router: Router, private fb: FormBuilder, private movimientoService: MovimientoService) {
+    const navigation = this.router.getCurrentNavigation();
+    const movimiento = navigation?.extras?.state?.['movimiento'] || null;
 
-  constructor(
-    private movimientoService: MovimientoService,
-    private fb: FormBuilder
-  ) {
     this.form = this.fb.group({
       tipo: ['ingreso', Validators.required],
       monto: [0, [Validators.required, Validators.min(0)]],
       descripcion: ['', Validators.required],
       fecha: [new Date().toISOString().split('T')[0], Validators.required],
-      categoria_id: [1, Validators.required],
+      categoria_id: [1, Validators.required]
     });
+
+    if (movimiento) {
+      console.log('Movimiento recibido en formulario:', movimiento);
+      this.form.patchValue(movimiento);
+    }
   }
 
   guardar() {

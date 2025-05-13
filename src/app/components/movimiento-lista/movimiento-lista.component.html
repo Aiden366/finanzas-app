@@ -45,7 +45,7 @@
       <td>{{ mov.monto | currency:'USD' }}</td>
       <td>
        <!-- Este es el botón para editar -->
-        <button (click)="editarMovimiento(mov.id)">Editar</button>
+        <button (click)="editarMovimiento(mov.id)">✏️</button>
 
         <button (click)="eliminarMovimiento(mov.id)">🗑️</button>
   </td>
@@ -67,3 +67,4 @@
     No se encontraron movimientos para los filtros aplicados.
   </div>
 </div>
+
