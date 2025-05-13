@@ -1,7 +1,6 @@
 <div class="lista-container">
   <div class="filtros">
     <div class="filtros">
-
       <mat-form-field appearance="outline">
         <mat-label>Tipo</mat-label>
         <mat-select [(ngModel)]="filtroTipo" (selectionChange)="onFiltroCambio()">
@@ -25,7 +24,6 @@
       </mat-form-field>
     </div>
 
-
   <table *ngIf="movimientosFiltrados().length > 0">
     <thead>
       <tr>
@@ -34,23 +32,21 @@
         <th>Fecha</th>
         <th>Categoría</th>
         <th>Descripción</th>
+        <th>Acciones</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let mov of movimientosFiltrados()">
-      <td>{{ mov.fecha }}</td>
-      <td>{{ mov.tipo }}</td>
-      <td>{{ obtenerNombreCategoria(mov.categoria_id) }}</td>
-      <td>{{ mov.descripcion || '-' }}</td>
-      <td>{{ mov.monto | currency:'USD' }}</td>
-      <td>
-       <!-- Este es el botón para editar -->
-        <button (click)="editarMovimiento(mov.id)">✏️</button>
-
-        <button (click)="eliminarMovimiento(mov.id)">🗑️</button>
-  </td>
-</tr>
-
+        <td>{{ mov.fecha }}</td>
+        <td>{{ mov.tipo }}</td>
+        <td>{{ obtenerNombreCategoria(mov.categoria_id) }}</td>
+        <td>{{ mov.descripcion || '-' }}</td>
+        <td>{{ mov.monto | currency:'USD' }}</td>
+        <td class="acciones">
+          <button class="btn-editar" (click)="editarMovimiento(mov.id)">✏️</button>
+          <button class="btn-eliminar" (click)="eliminarMovimiento(mov.id)">🗑️</button>
+        </td>
+      </tr>
     </tbody>
   </table>
 
@@ -61,10 +57,7 @@
     <p><strong>Balance:</strong> {{ ingresos - gastos |  currency:'USD':'symbol' }}</p>
   </div>
 
-
-
   <div *ngIf="movimientosFiltrados().length === 0" class="sin-movimientos">
     No se encontraron movimientos para los filtros aplicados.
   </div>
 </div>
-
