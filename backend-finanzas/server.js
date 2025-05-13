@@ -1,6 +1,14 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
+const path = require('path');
+
+app.use(express.static(path.join(__dirname, 'dist/nombre-de-tu-app')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist/nombre-de-tu-app/index.html'));
+});
+
 
 app.use(cors());
 app.use(express.json());

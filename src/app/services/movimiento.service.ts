@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
-
-
+import { environment } from '../../environments/environment';
 
 export interface Movimiento {
   id: number;
@@ -18,13 +17,11 @@ export interface Movimiento {
   };
 }
 
-
-
 @Injectable({
   providedIn: 'root'
 })
 export class MovimientoService {
-  private apiUrl = 'http://localhost:3000/api/movimientos';
+  private apiUrl = `${environment.apiUrl}/movimientos`;
 
   constructor(private http: HttpClient) {}
 
@@ -32,7 +29,6 @@ export class MovimientoService {
   getMovimientos(): Observable<Movimiento[]> {
     return this.http.get<Movimiento[]>(this.apiUrl);
   }
-
 
   obtenerMovimientos(tipo?: string, categoria_id?: number): Observable<Movimiento[]> {
     let params: any = {};
@@ -54,9 +50,6 @@ export class MovimientoService {
     );
   }
 
-
-
-
   // Métodos CRUD
   agregarMovimiento(movimiento: Movimiento): Observable<Movimiento> {
     return this.http.post<Movimiento>(this.apiUrl, movimiento);
@@ -66,18 +59,16 @@ export class MovimientoService {
     return this.http.put<Movimiento>(`${this.apiUrl}/${id}`, movimiento);
   }
 
-
   eliminarMovimiento(id: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${id}`);
   }
+
   obtenerMovimientoPorId(id: number): Observable<Movimiento> {
     return this.http.get<Movimiento>(`${this.apiUrl}/${id}`);
   }
+
   // Crear movimiento
   crearMovimiento(movimiento: Movimiento): Observable<Movimiento> {
     return this.http.post<Movimiento>(this.apiUrl, movimiento);
   }
-
-
-
 }
