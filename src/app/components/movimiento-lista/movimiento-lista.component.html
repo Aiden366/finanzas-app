@@ -37,11 +37,11 @@
     </thead>
     <tbody>
       <tr *ngFor="let mov of movimientosFiltrados()">
-        <td>{{ mov.fecha }}</td>
         <td>{{ mov.tipo }}</td>
+        <td>{{ mov.monto | currency:'USD' }}</td>
+        <td>{{ mov.fecha }}</td>
         <td>{{ obtenerNombreCategoria(mov.categoria_id) }}</td>
         <td>{{ mov.descripcion || '-' }}</td>
-        <td>{{ mov.monto | currency:'USD' }}</td>
         <td class="acciones">
           <button class="btn-editar" (click)="editarMovimiento(mov.id)">✏️</button>
           <button class="btn-eliminar" (click)="eliminarMovimiento(mov.id)">🗑️</button>
