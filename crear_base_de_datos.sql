@@ -26,7 +26,9 @@ CREATE TABLE IF NOT EXISTS movimientos (
   categoria_id INT,
   usuario_id INT,
   FOREIGN KEY (categoria_id) REFERENCES categorias(id),
-  FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
+  FOREIGN KEY (usuario_id) REFERENCES usuarios(id),
+  createdAt DATETIME NOT NULL,
+  updatedAt DATETIME NOT NULL 
 );
 
 -- Datos de ejemplo
@@ -41,6 +43,6 @@ INSERT INTO usuarios (nombre, correo, contrasena) VALUES
   ('Usuario Demo', 'demo@correo.com', 'demo123');
 
 -- Insert de prueba para movimiento
-INSERT INTO movimientos (tipo, monto, descripcion, fecha, categoria_id, usuario_id) VALUES
-  ('gasto', 500.00, 'Compra de víveres', '2024-05-01', 1, 1),
-  ('ingreso', 2000.00, 'Pago de salario', '2024-05-02', NULL, 1);
+INSERT INTO movimientos (tipo, monto, descripcion, fecha, categoria_id, usuario_id,createdAt,updatedAt) VALUES
+  ('gasto', 500.00, 'Compra de víveres', '2024-05-01', 1, 1,2025-05-21 10:30:00,2025-05-21 10:30:00),
+  ('ingreso', 2000.00, 'Pago de salario', '2024-05-02', NULL, 1,2025-05-21 10:30:00,2025-05-21 10:30:00);
